@@ -99,5 +99,5 @@ console.log(store.getStore());
  */
 ```
 
-回归本质：基于 reducer 创建的 store 本质上可以视作一个带有 *订阅/发布* 机制的全局变量  
+回归本质：基于 reducer 创建的 store 本质上可以视作一个带有 **订阅/发布** 机制的全局变量  
 完整代码参考 `scripts/base2.js`
