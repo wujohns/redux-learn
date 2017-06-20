@@ -28,7 +28,8 @@ const packageConfig = {
         'async': '^2.4.1',
 
         // redux 相关
-        'redux': '^3.7.0'
+        'redux': '^3.7.0',
+        'redux-logger': '^3.0.6'
     },
 
     devDependencies: {}

@@ -25,7 +25,7 @@ const reducer = (state = 0, action) => {
         default:
             return state;
     }
-}
+};
 
 const store = redux.createStore(reducer);
 console.log(store.getState());
