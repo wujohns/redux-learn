@@ -8,7 +8,7 @@
 数（可以组装后再组装）  
 
 使用案例如下：
-```javascripts
+```javascript
 const redux = require('redux'),
     createStore = redux.createStore,
     combineReducers = redux.combineReducers;
@@ -65,7 +65,7 @@ const store = createStore(reducer);
 ```
 
 组装后 `store` 中 `state` 的结构为（和 `json对象` 的赋值类似）： 
-```javascripts
+```javascript
 console.log(store.getStore());
 /**
  * 输出结果为：
@@ -77,7 +77,7 @@ console.log(store.getStore());
 ```
 
 使用 `dispatch` 发送相应的 `action` 即可修改相应的 `state`：
-```javascripts
+```javascript
 store.dispatch({
     type: 'LOGIN',
     payload: {
