@@ -1,6 +1,6 @@
 # redux 异步方案
 目前在 redux 中有两种异步方案，一种是 `redux-thunk` ,另一种则是 `redux-promise`，这里
-仅记录 `redux-thunk` 的解决方案。
+介绍 `redux-thunk` 的解决方案后，补充一个推荐的方案。
 
 ## thunk 结构说明
 thunk 结构一般用于构建特定的函数，其返回值是一个函数：
@@ -100,5 +100,5 @@ fn(1000, (err, type) => {
     console.log(type);
 });
 ```
-复杂异步逻辑配合 `async.js` 即可（万金油）。  
+复杂异步逻辑配合 [async.js](http://caolan.github.io/async/) 组织即可（万金油）。  
 详细代码参考 `scripts/base4-2.js`

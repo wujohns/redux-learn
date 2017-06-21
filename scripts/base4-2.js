@@ -7,7 +7,6 @@
 'use strict';
 
 const redux = require('redux'),
-    applyMiddleware = redux.applyMiddleware,
     createStore = redux.createStore;
 
 const reducer = (state = 'free', action) => {

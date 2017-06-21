@@ -1,43 +1,44 @@
 /**
- * redux 异步方案
+ * redux 自制中间件
  *
  * @author wujohns
- * @date 17/6/20
+ * @date 17/6/21
  */
 'use strict';
 
-// applyMiddleware 的原始代码
-const applyMiddleware = (...middlewares) => {
-    return (createStore) => {
-        return (reducer, preloadedState, enhancer) => {
-            const store = createStore(reducer, preloadedState, enhancer);
-            let dispatch = store.dispatch;
-            let chain = [];
+const redux = require('redux'),
+    applyMiddleware = redux.applyMiddleware,
+    createStore = redux.createStore;
 
-            const middlewareAPI = {
-                getState: store.getState,
-                dispatch: (action) => dispatch(action)
-            };
-            chain = middlewares.map(middleware => middleware(middlewareAPI));
-            dispatch = compose(...chain)(store.dispatch);
-
-            return {
-                ...store,
-                dispatch
-            }
-        }
-    };
+const reducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'INCREMENT':
+            return state + 1;
+        case 'DECREMENT':
+            return state - 1;
+        default:
+            return state;
+    }
 };
 
-// redux-thunk 原始代码，thunk 即为该中间件
-const createThunkMiddleware = (extraArgument) => {
-    return ({ dispatch, getState }) => next => action => {
-        if (typeof action === 'function') {
-            return action(dispatch, getState, extraArgument);
-        }
-        return next(action);
-    };
+/**
+ * @params {Object} middlewaveAPI - redux 的 applyMiddleware 机制传递的参数
+ * @params {Function} middlewareAPI.dispatch - store.dispatch 的引用
+ * @params {Function} middlewareAPI.getState - store.getState 的引用
+ */
+const cusLogger = ({ dispatch, getState }) => next => action => {
+    console.log('\n------ custom logger ----------');
+    console.log(`action type: ${ action.type }`);
+    console.log(`before: ${ getState() }`);
+    next(action);
+    console.log(`after: ${ getState() }`);
 };
 
-const thunk = createThunkMiddleware();
-thunk.withExtraArgument = createThunkMiddleware;
+const store = createStore(
+    reducer,
+    applyMiddleware(cusLogger)
+);
+
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'DECREMENT' });
