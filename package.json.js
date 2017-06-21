@@ -29,7 +29,8 @@ const packageConfig = {
 
         // redux 相关
         'redux': '^3.7.0',
-        'redux-logger': '^3.0.6'
+        'redux-logger': '^3.0.6',
+        'redux-thunk': '^2.2.0'
     },
 
     devDependencies: {}
