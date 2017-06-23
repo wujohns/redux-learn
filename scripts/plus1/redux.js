@@ -13,7 +13,7 @@ const _ = require('lodash');
  * redux
  * @class
  */
-class redux {
+class Redux {
     /**
      * 初始化
      * @constructor
@@ -58,7 +58,7 @@ class redux {
      * @returns {Object} action
      */
     dispatch (action) {
-        this.state = reducer(this.state, action);
+        this.state = this.reducer(this.state, action);
 
         const length = this.listeners.length;
         for (let i = 0; i < length; i++) {
@@ -78,7 +78,7 @@ class redux {
         if (typeof enhancer === 'function') {
             return enhancer(createStore)(reducer);
         }
-        return new redux(reducer);
+        return new Redux(reducer);
     }
 
     /**
@@ -101,45 +101,24 @@ class redux {
      * @param {...Function} middlewares - 中间件
      * @returns {Function} a store enhancer applying the middleware
      */
-    static applyMiddleware (...middlewares) {}
+    static applyMiddleware (...middlewares) {
+        return (createStore) => (reducer) => {
+            const store = Redux.createStore(reducer);
+            let dispatch = store.dispath;
+
+            const middlewareAPI = {
+                getState: store.getState,
+                dispatch: (action) => dispatch(action)
+            };
+            const chain = _.map(middlewares, middleware => middleware(middlewareAPI));
+            dispatch = compose(...chain)(store.dispatch);
+
+            return {
+                ...store,
+                dispatch
+            };
+        };
+    }
 }
 
-module.exports = redux;
-
-// 相关测试 ---------------------------------------------------------
-const addReducer = (state = 1, action) => {
-    switch (action.type) {
-        case 'ADD':
-            return state + 1;
-        default:
-            return state;
-    }
-};
-
-const textReducer = (state = '', action) => {
-    switch (action.type) {
-        case 'HELLO':
-            return 'hello world!!!';
-        case 'CLEAR':
-            return '';
-        default:
-            return state;
-    }
-};
-
-const reducer = redux.combineReducers({
-    add: addReducer,
-    text: textReducer
-});
-const store = redux.createStore(reducer);
-
-const unsubscribe = store.subscribe(() => {
-    console.log('\n----- add -------');
-    console.log(store.getState());
-});
-
-store.dispatch({ type: 'ADD' });
-store.dispatch({ type: 'HELLO' });
-store.dispatch({ type: 'ADD' });
-unsubscribe();
-store.dispatch({ type: 'ADD' });
+module.exports = Redux;

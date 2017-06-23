@@ -1,5 +1,5 @@
 /**
- * 原版 redux 中的一些技巧
+ * 没有 ensureCanMutateNextListeners 时会出现的 bug
  *
  * @author wujohns
  * @date 17/6/22

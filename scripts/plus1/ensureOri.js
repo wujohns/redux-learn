@@ -1,5 +1,5 @@
 /**
- * 原版 redux 中的一些技巧
+ * 原版 redux 中的 ensureCanMutateNextListeners 机制演示
  *
  * @author wujohns
  * @date 17/6/22
