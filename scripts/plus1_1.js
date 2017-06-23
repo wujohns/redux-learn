@@ -7,6 +7,8 @@
  */
 'use strict';
 
+const _ = require('lodash');
+
 /**
  * redux
  * @class
@@ -37,15 +39,15 @@ class redux {
      */
     subscribe (listener) {
         let isSubscribed = true;
-        listeners.push(listener);
+        this.listeners.push(listener);
 
         const unsubscribe = () => {
             if (!isSubscribed) {
                 return;
             }
             isSubscribed = false;
-            const index = listeners.indexOf(listener);
-            listeners.splice(index, 1);
+            const index = this.listeners.indexOf(listener);
+            this.listeners.splice(index, 1);
         };
         return unsubscribe;
     }
@@ -56,11 +58,11 @@ class redux {
      * @returns {Object} action
      */
     dispatch (action) {
-        state = reducer(state, action);
+        this.state = reducer(this.state, action);
 
-        const length = listeners.length;
+        const length = this.listeners.length;
         for (let i = 0; i < length; i++) {
-            const listener = listeners[i];
+            const listener = this.listeners[i];
             listener && listener();
         }
         return action;
@@ -84,16 +86,60 @@ class redux {
      * @param {Object} reducers - 对应的 reducer 组成的对象
      * @returns {Function} 组装后新的 reducer
      */
-    static combineReducers (reducers) {}
+    static combineReducers (reducers) {
+        return (state = {}, action) => {
+            const resultState = _.reduce(reducers, (nextState, reducer, key) => {
+                nextState[key] = reducer(state[key], action);
+                return nextState;
+            }, {});
+            return resultState;
+        }
+    }
 
     /**
      * 加载中间件的方法
      * @param {...Function} middlewares - 中间件
      * @returns {Function} a store enhancer applying the middleware
      */
-    static applyMiddleware (...middlewares) {
-        
-    }
+    static applyMiddleware (...middlewares) {}
 }
 
 module.exports = redux;
+
+// 相关测试 ---------------------------------------------------------
+const addReducer = (state = 1, action) => {
+    switch (action.type) {
+        case 'ADD':
+            return state + 1;
+        default:
+            return state;
+    }
+};
+
+const textReducer = (state = '', action) => {
+    switch (action.type) {
+        case 'HELLO':
+            return 'hello world!!!';
+        case 'CLEAR':
+            return '';
+        default:
+            return state;
+    }
+};
+
+const reducer = redux.combineReducers({
+    add: addReducer,
+    text: textReducer
+});
+const store = redux.createStore(reducer);
+
+const unsubscribe = store.subscribe(() => {
+    console.log('\n----- add -------');
+    console.log(store.getState());
+});
+
+store.dispatch({ type: 'ADD' });
+store.dispatch({ type: 'HELLO' });
+store.dispatch({ type: 'ADD' });
+unsubscribe();
+store.dispatch({ type: 'ADD' });

@@ -25,7 +25,7 @@ const packageConfig = {
     dependencies: {
         // 基础工具
         'lodash': '^4.17.4',
-        'async': '^2.4.1',
+        'async': '^2.4.1',      // 目前代码中并未出现，之后考虑移除
 
         // redux 相关
         'redux': '^3.7.0',
