@@ -111,4 +111,4 @@ const m = next => action => {
 1. `action` 则作为参数被一层层传入（每层皆可以使用和修改）
 1. 当 `next` 执行完后则会由一层层从里到外，执行每层 `next` 后面定义的内容
 
-完整案例代码见 `scripts/plus2/compose.js`
+完整案例代码见 [scripts/plus2/compose.js](/scripts/plus2/compose.js)

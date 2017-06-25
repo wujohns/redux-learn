@@ -35,5 +35,5 @@ const cusLogger = ({ dispatch, getState }) => next => action => {
 
 ## 原理分析
 在补充章节有相关的原理分析：  
-plus1 自制简易的redux
-plus2 自制简易的redux前的js知识补充
+[plus1 自制简易的redux](/docs/plus1 自制简易的redux.md)  
+[plus2 自制简易的redux前的js知识补充](/docs/plus2 自制redux前的js知识补充.md)  

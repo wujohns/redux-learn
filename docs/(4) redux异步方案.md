@@ -3,7 +3,8 @@
 介绍 `redux-thunk` 的解决方案后，补充一个推荐的方案。
 
 ## thunk 结构说明
-thunk 结构说明参考 `plus2 自制redux前的js知识补充` 章节中的**柯里化**部分
+thunk 结构说明参考 [plus2 自制redux前的js知识补充](/docs/plus2 自制redux前的js知识补充.md)
+章节中的**柯里化**部分
 
 ## redux-thunk的使用
 `redux-thunk` 可以使 `store.dispatch` 接受一个函数作为参数，如下：
@@ -56,7 +57,7 @@ store.dispatch(thunkFn(1000, (err, type) => {
     console.log(type);
 }));
 ```
-详细代码参考 `scripts/base4-1.js`
+详细代码参考 [scripts/base4-1.js](scripts/base4-1.js)
 
 ## 另一种对异步逻辑封装的方式（推荐）
 看到这里可以会有人觉得 `redux-thunk` 好厉害，简直 666，但个人认为按照那种方式处理只会徒增
@@ -78,4 +79,4 @@ fn(1000, (err, type) => {
 });
 ```
 复杂异步逻辑配合 [async.js](http://caolan.github.io/async/) 组织即可（万金油）。  
-详细代码参考 `scripts/base4-2.js`
+详细代码参考 [scripts/base4-2.js](/scripts/base4-2.js)

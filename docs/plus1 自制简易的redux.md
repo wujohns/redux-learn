@@ -29,4 +29,5 @@ combineReducers (reducers) {
 ## 中间件机制
 `redux` 的中间件采用的是洋葱模型，在 `plus2` 中有介绍，可以细看。
 
-完整代码见 `scripts/plus1/redux.js`，实际测试见 `scripts/plus1/test.js`
+完整代码见 [scripts/plus1/redux.js](/scripts/plus1/redux.js)，
+实际测试见 [scripts/plus1/test.js](/scripts/plus1/test.js)

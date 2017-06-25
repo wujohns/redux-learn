@@ -24,4 +24,4 @@ store.dispatch({ type: 'DECREMENT' });
 
 当使用多个中间件时在载入顺序上需要注意，原理相关可以参考 **中间件开发** 以及后续的 **自制redux部分**
 
-完整代码参考 `scripts/base3.js`
+完整代码参考 [scripts/base3.js](scripts/base3.js)
