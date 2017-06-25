@@ -13,14 +13,14 @@
 ## docs 目录
 基础部分：  
 (1) [redux的基础使用](/docs/(1) redux的基础使用.md)  
-(2) redux中reducer的拆分  
-(3) redux中间件使用  
-(4) redux异步方案  
-(5) redux中间件开发  
+(2) [redux中reducer的拆分](/docs/(2) redux中reducer的拆分.md)  
+(3) [redux中间件使用](/docs/(3) redux中间件使用.md)  
+(4) [redux异步方案](/docs/(4) redux异步方案.md)  
+(5) [redux中间件开发](/docs/(5) redux中间件开发.md)  
 
 额外补充：  
-plus1 自制简易的redux  
-plus2 自制简易的redux前的js知识补充  
+[plus1 自制简易的redux](/docs/plus1 自制简易的redux.md)  
+[plus2 自制简易的redux前的js知识补充](/docs/plus2 自制简易的redux前的js知识补充.md)  
 
 相关参考：  
 [Redux 入门教程（一）：基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)  
