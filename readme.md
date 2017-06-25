@@ -12,7 +12,7 @@
 
 ## docs 目录
 基础部分：  
-(1) redux的基础使用  
+(1) [redux的基础使用](/docs/(1) redux的基础使用.md)  
 (2) redux中reducer的拆分  
 (3) redux中间件使用  
 (4) redux异步方案  

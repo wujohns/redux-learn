@@ -3,30 +3,7 @@
 介绍 `redux-thunk` 的解决方案后，补充一个推荐的方案。
 
 ## thunk 结构说明
-thunk 结构一般用于构建特定的函数，其返回值是一个函数：
-```javascript
-const thunkFn = (title) => {
-    return (content) => {
-        console.log(`${ title }: ${ content }`);
-    };
-};
-
-thunkFn('GG')('game over');
-thunkFn('GG')('good game');
-```
-
-以上等同于：
-```javascript
-const title = GG;
-const fn = (content) => {
-   console.log(`${ title }: ${ content }`); 
-};
-
-fn('game over');
-fn('good game');
-```
-
-可见使用 thunk 可以方便我们构造出想要的函数。
+thunk 结构说明参考 `plus2 自制redux前的js知识补充` 章节中的**柯里化**部分
 
 ## redux-thunk的使用
 `redux-thunk` 可以使 `store.dispatch` 接受一个函数作为参数，如下：
@@ -62,7 +39,7 @@ function (dispatch, getState) {
 }
 ```
 
-一些异步处理的操作可以使用 thunk 格式封装：
+一些异步处理的操作可以使用 thunk 格式封装（非严格thunk）：
 ```javascript
 // 这里用 setTimeout 模拟异步
 const thunkFn = (delayTime, callback) => {

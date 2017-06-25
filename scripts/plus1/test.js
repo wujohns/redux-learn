@@ -32,8 +32,19 @@ const reducer = redux.combineReducers({
     add: addReducer,
     text: textReducer
 });
-const store = redux.createStore(reducer);
 
+const m1 = ({getState, dispatch}) => next => action => {
+    console.log('start m1');
+    next(action);
+    console.log('end m1');
+};
+
+const m2 = ({getState, dispatch}) => next => action => {
+    console.log('start m2');
+    next(action);
+    console.log('end m2');
+};
+const store = redux.createStore(reducer, redux.applyMiddleware(m1, m2));
 const unsubscribe = store.subscribe(() => {
     console.log('\n----- state change -------');
     console.log(store.getState());

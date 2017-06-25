@@ -76,7 +76,7 @@ class Redux {
      */
     static createStore (reducer, enhancer) {
         if (typeof enhancer === 'function') {
-            return enhancer(createStore)(reducer);
+            return enhancer(reducer);
         }
         return new Redux(reducer);
     }
@@ -97,26 +97,41 @@ class Redux {
     }
 
     /**
+     * 函数拼接方法（洋葱模型构造器）
+     * @param {...Function} 被注入了 getState 以及 dispatch 方法的中间件
+     * @returns {Function} 组合后的中间件
+     * @private
+     */
+    static _compose (...funcs) {
+        if (funcs.length === 0) {
+            return (arg) => arg;
+        }
+        if (funcs.length === 1) {
+            return funcs[0];
+        }
+
+        return funcs.reduce((a, b) => (...args) => a(b(...args)));
+    }
+
+    /**
      * 加载中间件的方法
      * @param {...Function} middlewares - 中间件
      * @returns {Function} a store enhancer applying the middleware
      */
     static applyMiddleware (...middlewares) {
-        return (createStore) => (reducer) => {
-            const store = Redux.createStore(reducer);
-            let dispatch = store.dispath;
+        return (reducer) => {
+            const store = new Redux(reducer);
+            let dispatch = store.dispatch.bind(store);
 
             const middlewareAPI = {
                 getState: store.getState,
                 dispatch: (action) => dispatch(action)
             };
             const chain = _.map(middlewares, middleware => middleware(middlewareAPI));
-            dispatch = compose(...chain)(store.dispatch);
+            dispatch = Redux._compose(...chain)(dispatch);
 
-            return {
-                ...store,
-                dispatch
-            };
+            store.dispatch = dispatch;
+            return store;
         };
     }
 }
