@@ -53,4 +53,4 @@ store.dispatch({ type: 'DECREMENT' });
 console.log(store.getState());
 ```
 
-完整代码参考：`scripts/base1.js`
+完整代码参考：[scripts/base1.js](/scripts/base1.js)

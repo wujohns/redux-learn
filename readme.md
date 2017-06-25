@@ -20,7 +20,7 @@
 
 额外补充：  
 [plus1 自制简易的redux](/docs/plus1 自制简易的redux.md)  
-[plus2 自制简易的redux前的js知识补充](/docs/plus2 自制简易的redux前的js知识补充.md)  
+[plus2 自制简易的redux前的js知识补充](/docs/plus2 自制redux前的js知识补充.md)  
 
 相关参考：  
 [Redux 入门教程（一）：基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)  
