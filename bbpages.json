@@ -1,0 +1,18 @@
+{
+    "footer": "Powered By Bubufly Studio - Wujohns",
+    "list": [
+        { "title": "简介", "path": "readme.md" },
+        { "title": "1.redux的基础使用", "path": "docs/1.redux的基础使用.md" },
+        { "title": "2.redux中reducer的拆分", "path": "docs/2.redux中reducer的拆分.md" },
+        { "title": "3.redux中间件使用", "path": "docs/3.redux中间件使用.md" },
+        { "title": "4.redux异步方案", "path": "docs/4.redux异步方案.md" },
+        { "title": "5.redux中间件开发", "path": "docs/5.redux中间件开发.md" },
+        { 
+            "title": "补充",
+            "list": [
+                { "title": "plus1.自制简易的redux", "path": "docs/plus1.自制简易的redux.md" },
+                { "title": "plus2.自制redux前的js知识补充", "path": "docs/plus2.自制redux前的js知识补充.md" }
+            ]
+        }
+    ]
+}
